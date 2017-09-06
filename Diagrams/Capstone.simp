@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<sim-project version="10.50" multi-file="no">
+  <meta>
+    <name>Capstone</name>
+    <authors> Nhóm 1 - JS</authors>
+    <description>Capstone project - Fall 2017</description>
+  </meta>
+  <counters models="1">
+    <entity-names>
+      <counter>
+        <item-type type-id="class" type="UmlClass" />
+        <value>1</value>
+      </counter>
+      <counter>
+        <item-type type-id="actor" type="UmlActor" />
+        <value>1</value>
+      </counter>
+      <counter>
+        <item-type type-id="system-boundary" type="UmlSystemBoundary" />
+        <value>1</value>
+      </counter>
+      <counter>
+        <item-type type-id="use-case" type="UmlUseCase" />
+        <value>3</value>
+      </counter>
+    </entity-names>
+    <entity-ids>
+      <counter>
+        <item-type type-id="class" type="UmlClass" />
+        <value>2</value>
+      </counter>
+      <counter>
+        <item-type type-id="actor" type="UmlActor" />
+        <value>2</value>
+      </counter>
+      <counter>
+        <item-type type-id="system-boundary" type="UmlSystemBoundary" />
+        <value>2</value>
+      </counter>
+      <counter>
+        <item-type type-id="use-case" type="UmlUseCase" />
+        <value>4</value>
+      </counter>
+      <counter>
+        <item-type type-id="relationship" type="UmlAssociation" />
+        <value>5</value>
+      </counter>
+    </entity-ids>
+    <diagrams>
+      <counter>
+        <type>SoftwareIdeasModeler.Core.Diagrams.UmlDiagrams.UmlClassDiagram</type>
+        <value>1</value>
+      </counter>
+      <counter>
+        <type>SoftwareIdeasModeler.Core.Diagrams.UmlDiagrams.UmlUseCaseDiagram</type>
+        <value>1</value>
+      </counter>
+    </diagrams>
+    <fields>
+      <counter>
+        <type>SoftwareIdeasModeler.Core.DiagramItems.Fields.AttributeField</type>
+        <value>5</value>
+      </counter>
+    </fields>
+  </counters>
+  <alias-groups />
+  <management>
+    <persons>
+      <person id="P1d51672e928c47038c940e3142826298">
+        <first-name />
+        <last-name />
+        <role />
+        <e-mail />
+        <phone-number />
+        <description />
+        <color>#00000000</color>
+      </person>
+    </persons>
+    <tasks />
+    <requirements />
+    <issues />
+    <to-dos />
+  </management>
+  <glossary />
+  <types default="UML">
+    <type-sets>
+      <type-set file="UmlTypes.xml" />
+    </type-sets>
+    <custom-types>
+      <type id="int" tid="" name="int" description="" nullable="false" />
+      <type id="long" tid="" name="long" description="" nullable="false" />
+    </custom-types>
+  </types>
+  <filters />
+  <macros />
+  <items />
+  <models>
+    <model id="pb1829a1723ef4d739e42a1096b291ee7_265952573" name="Model 1" namespace="" order-index="1">
+      <meta>
+        <authors>
+          <author> </author>
+        </authors>
+        <description />
+        <creation-date>09/02/2017 23:21:14</creation-date>
+        <change-date>01/01/0001 00:00:00</change-date>
+        <revision-count>0</revision-count>
+        <version />
+      </meta>
+      <abstract-items />
+      <sub-models />
+      <diagram type="uml-class" id="p8b3fcffc23c442348e21f714168b82ca_334532535" name="ClassDiagram1" order-index="1" show-id="false" show-name="true" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-special-indicators="false" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-nullability="true" show-sequence-number="false" show-extension-points="false" show-relationship-texts="true" show-description="false" show-field-description="false" auto-routed-paths="false">
+        <style>
+          <background-color index="1" color="#FFFFFFFF" />
+          <background-color index="2" color="#FFFFFFFF" />
+          <background-type type="solid" />
+        </style>
+        <meta>
+          <authors>
+            <author> </author>
+          </authors>
+          <description />
+          <creation-date>09/02/2017 23:21:23</creation-date>
+          <change-date>09/02/2017 23:34:46</change-date>
+          <revision-count>0</revision-count>
+          <version />
+        </meta>
+        <abstract-items>
+          <item id="di446418748263694372" cid="C001" type="class" name="Item" style-class="" visibility="package" change-tracking-state="added" creator="P1d51672e928c47038c940e3142826298" creation-date="09/02/2017 23:34:46">
+            <style class="default" />
+            <attributes>
+              <attribute id="a0e04d3b3ad404c30bbc055abdb3ea2bb378" cid="ELEM002" name="id" type="int" type-id="int" visibility="public" is-id="true">
+                <style class="default" />
+              </attribute>
+              <attribute id="aedc8ae856bcb47ad91cfc13547b17af1364" cid="ELEM003" name="name" type="String" type-id="Uml.String" visibility="public">
+                <style class="default" />
+              </attribute>
+              <attribute id="a7321fd22c46e4f17b97254bdd4a5a7f7803" cid="ELEM004" name="price" type="long" type-id="long" visibility="public">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <source-codes>
+              <source-code language="ActionScript" />
+            </source-codes>
+          </item>
+        </abstract-items>
+        <layer name="Default" visible="true" enabled="true" locked="false">
+          <item id="di446418748263694372" iid="cabfe5952bb44a979afb3294e72bacfa" creation-date="09/02/2017 23:34:46" order-index="0" type="entity">
+            <layout ax="178" ay="170" awidth="140" aheight="160" x="178" y="170" width="140" height="160" />
+            <class />
+          </item>
+        </layer>
+      </diagram>
+      <diagram type="uml-usecase" id="pef951b4184534452994547ccbd0f343a_708316508" name="UseCaseDiagram1" order-index="2" overview-order-index="0" show-id="false" show-name="true" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-special-indicators="false" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-nullability="true" show-sequence-number="false" show-extension-points="false" show-relationship-texts="true" show-description="false" show-field-description="false" auto-routed-paths="false">
+        <style>
+          <background-color index="1" color="#FFFFFFFF" />
+          <background-color index="2" color="#FFFFFFFF" />
+          <background-type type="solid" />
+        </style>
+        <meta>
+          <authors>
+            <author> </author>
+          </authors>
+          <description />
+          <creation-date>09/03/2017 22:30:20</creation-date>
+          <change-date>09/03/2017 23:09:53</change-date>
+          <revision-count>0</revision-count>
+          <version />
+        </meta>
+        <abstract-items>
+          <item id="di826295993721065406" cid="AC001" type="actor" name="User" style-class="" visibility="package" change-tracking-state="added" creation-date="09/03/2017 22:31:38">
+            <style class="default" />
+          </item>
+          <item id="di603943031999031366" cid="SYS001" type="system-boundary" name="Chatbot System" style-class="" visibility="package" change-tracking-state="added" creation-date="09/03/2017 22:33:15">
+            <style class="default" />
+          </item>
+          <item id="di673818587800013344" cid="UC001" type="use-case" name="Đặt hàng" style-class="" owner="di603943031999031366" visibility="package" change-tracking-state="added" creation-date="09/03/2017 22:35:16">
+            <style class="default" />
+            <use-case>
+              <stakeholders />
+            </use-case>
+          </item>
+          <item id="di367721881960118831" cid="UC002" type="use-case" name="Lấy coupon" style-class="" owner="di603943031999031366" visibility="package" change-tracking-state="added" creation-date="09/03/2017 23:06:53">
+            <style class="default" />
+            <use-case>
+              <stakeholders />
+            </use-case>
+          </item>
+          <item id="di116339465229491156" cid="UC003" type="use-case" name="Xem thông tin khuyến mãi" style-class="" owner="di603943031999031366" visibility="package" change-tracking-state="added" creation-date="09/03/2017 23:07:27">
+            <style class="default" />
+            <use-case>
+              <stakeholders />
+            </use-case>
+          </item>
+          <item id="di291424911535337808" cid="REL002" type="relationship" name="" style-class="" visibility="package" change-tracking-state="added" creation-date="09/03/2017 23:09:38" from="di826295993721065406" to="di673818587800013344">
+            <style class="default" />
+            <relation from="di826295993721065406" to="di673818587800013344">
+              <start-role id="" name="" navigability="" association-type="association" visibility="private" />
+              <end-role id="" name="" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di279094299981875627" cid="REL003" type="relationship" name="" style-class="" visibility="package" change-tracking-state="added" creation-date="09/03/2017 23:09:45" from="di291424911535337808" to="di367721881960118831">
+            <style class="default" />
+            <relation from="di291424911535337808" to="di367721881960118831">
+              <start-role id="" name="" navigability="" association-type="association" visibility="private" />
+              <end-role id="" name="" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di371550846442793998" cid="REL004" type="relationship" name="" style-class="" visibility="package" change-tracking-state="added" creation-date="09/03/2017 23:09:53" from="di826295993721065406" to="di116339465229491156">
+            <style class="default" />
+            <relation from="di826295993721065406" to="di116339465229491156">
+              <start-role id="" name="" navigability="" association-type="association" visibility="private" />
+              <end-role id="" name="" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+        </abstract-items>
+        <layer name="Default" visible="true" enabled="true" locked="false">
+          <item id="di826295993721065406" iid="203a2c97203a4ac3989cf72d16208176" creation-date="09/03/2017 22:31:38" order-index="0" type="entity">
+            <layout ax="74" ay="194" awidth="38" aheight="76" x="74" y="194" width="38" height="76" name-position="0,10" name-anchor="bottom" />
+          </item>
+          <item id="di603943031999031366" iid="51e177069f3643369f2663e6f9f66cc6" creation-date="09/03/2017 22:33:15" order-index="1" type="entity">
+            <layout ax="231" ay="45" awidth="413" aheight="447" x="231" y="45" width="413" height="447" />
+          </item>
+          <item id="di673818587800013344" iid="b5fd717544f5427d8ad155c956b694c2" container="di603943031999031366" container-iid="51e177069f3643369f2663e6f9f66cc6" creation-date="09/03/2017 22:35:16" order-index="2" type="entity">
+            <layout ax="266" ay="100" awidth="117" aheight="73" x="266" y="100" width="117" height="46" />
+            <use-case />
+          </item>
+          <item id="di367721881960118831" iid="a61a5f87114f4a6c9684d4b6336eeee4" container="di603943031999031366" container-iid="51e177069f3643369f2663e6f9f66cc6" creation-date="09/03/2017 23:06:53" order-index="3" type="entity">
+            <layout ax="287" ay="232" awidth="117" aheight="73" x="287" y="232" width="117" height="73" />
+            <use-case />
+          </item>
+          <item id="di116339465229491156" iid="6ff56ee1bb634b109f8c569161edf7b9" container="di603943031999031366" container-iid="51e177069f3643369f2663e6f9f66cc6" creation-date="09/03/2017 23:07:27" order-index="4" type="entity">
+            <layout ax="294.5" ay="365" awidth="118.5" aheight="74" x="294.5" y="365" width="118.5" height="75" />
+            <use-case />
+          </item>
+          <item id="di291424911535337808" iid="b0b46ad6ae8d450ca51d0718c3c26ba3" creation-date="09/03/2017 23:09:38" order-index="5" type="relation">
+            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="112" y1="232" x2="270" y2="150" start-border-pos="0.375" end-border-pos="0.828767123287671" name-position="0,0">
+              <points>
+                <point x="112" y="232" />
+                <point x="270" y="150" />
+              </points>
+            </layout>
+            <relation from="di826295993721065406" from-iid="203a2c97203a4ac3989cf72d16208176" to="di673818587800013344" to-iid="b5fd717544f5427d8ad155c956b694c2" />
+          </item>
+          <item id="di279094299981875627" iid="4e55277fa53c431e81c4db8ef933c697" creation-date="09/03/2017 23:09:45" order-index="6" type="relation">
+            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="112" y1="232" x2="287" y2="268" start-border-pos="0" end-border-pos="0.876712328767123" name-position="0,0">
+              <points>
+                <point x="112" y="232" />
+                <point x="287" y="268" />
+              </points>
+            </layout>
+            <relation from="di291424911535337808" from-iid="b0b46ad6ae8d450ca51d0718c3c26ba3" to="di367721881960118831" to-iid="a61a5f87114f4a6c9684d4b6336eeee4" />
+          </item>
+          <item id="di371550846442793998" iid="35d06c39ddd34393a61170d41c77c7f2" creation-date="09/03/2017 23:09:53" order-index="7" type="relation">
+            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="112" y1="232" x2="294" y2="400" start-border-pos="0.375" end-border-pos="0.881756756756757" name-position="0,0">
+              <points>
+                <point x="112" y="232" />
+                <point x="294" y="400" />
+              </points>
+            </layout>
+            <relation from="di826295993721065406" from-iid="203a2c97203a4ac3989cf72d16208176" to="di116339465229491156" to-iid="6ff56ee1bb634b109f8c569161edf7b9" />
+          </item>
+        </layer>
+      </diagram>
+    </model>
+  </models>
+  <documents />
+  <document-templates />
+</sim-project>
