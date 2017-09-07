@@ -1,0 +1,30 @@
+﻿Một shop có thể thuộc nhiều loại (cà phê, quần áo,...)
+Một shop thuộc 1 tập đoàn. 1 tập đoàn nhiều shop.
+Một shop có nhiều sản phẩm.
+Một invoice code thuộc về một shop. Code tự sinh.
+Có thể tìm kiếm các shop khác thuộc cùng loại của shop hiện tại trong khu vực.
+Coupon riêng, khuyến mãi riêng, tặng quà riêng
+Coupon có thể tặng tiền hoặc sản phẩm trong shop.
+Khuyến mãi có thể là giá tiền cụ thể hoặc phần trăm.
+Bảng chiến dịch để quản lý các dịch vụ khuyến mãi.
+Những gì bị xóa thì dưới db chỉ chỉnh lại là deactivate.
+Xài google map để xác định các shop xung quanh.
+Sử dụng redis để lưu các giá khuyến mãi hiện tại.
+
+--------------------06/09/2017-----------------
+Tạo ra một page kết hợp chatbot.
+Microsoft Bot framework, Luis???
+Tự động giới thiệu các dịch vụ xung quanh, không cần người ta chat trước.
+Feedback địa điểm
+Săn hàng, tích điểm, săn khuyến mãi
+Cung cấp quá trình nghiên cứu
+Làm một trang admin để quản lý mọi thứ.
+
+
+-------------Danh sách tính năng-------------
+Giới thiệu khuyến mãi của cửa hàng hiện tại và xung quanh thông qua chatbot.
+Đặt hàng qua chatbot.
+Quản lý các đơn hàng trên trang admin.
+
+
+
