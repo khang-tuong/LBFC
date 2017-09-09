@@ -20,11 +20,18 @@ Săn hàng, tích điểm, săn khuyến mãi
 Cung cấp quá trình nghiên cứu
 Làm một trang admin để quản lý mọi thứ.
 
+---------------------07/09/2017-----------------
+Có lưu thông tin người mua hàng ko?
+Quản lý cái gì?
+Có quản lý báo cáo ko?
+
+Tạo scenario trước
 
 -------------Danh sách tính năng-------------
 Giới thiệu khuyến mãi của cửa hàng hiện tại và xung quanh thông qua chatbot.
 Đặt hàng qua chatbot.
 Quản lý các đơn hàng trên trang admin.
+Đánh giá cửa hàng
 
 
 

@@ -61,7 +61,7 @@ Thumbs.db
 [Bb]in
 [Oo]bj
 [Tt]est[Rr]esults
-*.suo
+/LBFC/.vs/LBFC/v14/*.suo
 *.user
 *.[Cc]ache
 *[Rr]esharper*
