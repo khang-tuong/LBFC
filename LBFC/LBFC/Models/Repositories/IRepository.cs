@@ -16,6 +16,7 @@ namespace LBFC.Models.Repositories
         void Update(E entity);
         E SingleOrDefault(Func<E, bool> predicate);
         E Get<TKey>(TKey id);
+        List<E> Get(Func<E, bool> predicate);
     }
 
 }

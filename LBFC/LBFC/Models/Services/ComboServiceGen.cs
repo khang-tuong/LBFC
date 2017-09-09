@@ -14,7 +14,7 @@ namespace LBFC.Models.Services
     using LBFC.Models.Entities;
     
     
-    public partial interface IComboService
+    public partial interface IComboService : IBaseService<Combo>
     {
     }
     

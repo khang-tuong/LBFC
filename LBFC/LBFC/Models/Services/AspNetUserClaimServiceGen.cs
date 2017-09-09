@@ -14,7 +14,7 @@ namespace LBFC.Models.Services
     using LBFC.Models.Entities;
     
     
-    public partial interface IAspNetUserClaimService
+    public partial interface IAspNetUserClaimService : IBaseService<AspNetUserClaim>
     {
     }
     

@@ -14,7 +14,7 @@ namespace LBFC.Models.Services
     using LBFC.Models.Entities;
     
     
-    public partial interface IShopCategoryService
+    public partial interface IShopCategoryService : IBaseService<ShopCategory>
     {
     }
     

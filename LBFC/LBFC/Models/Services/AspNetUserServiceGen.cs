@@ -14,7 +14,7 @@ namespace LBFC.Models.Services
     using LBFC.Models.Entities;
     
     
-    public partial interface IAspNetUserService
+    public partial interface IAspNetUserService : IBaseService<AspNetUser>
     {
     }
     

@@ -14,7 +14,7 @@ namespace LBFC.Models.Services
     using LBFC.Models.Entities;
     
     
-    public partial interface IPromotionService
+    public partial interface IPromotionService : IBaseService<Promotion>
     {
     }
     

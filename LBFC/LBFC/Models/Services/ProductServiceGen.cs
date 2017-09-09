@@ -14,7 +14,7 @@ namespace LBFC.Models.Services
     using LBFC.Models.Entities;
     
     
-    public partial interface IProductService
+    public partial interface IProductService : IBaseService<Product>
     {
     }
     

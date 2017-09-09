@@ -296,6 +296,7 @@
     <Compile Include="Models\Services\ProductCategoryServiceGen.cs">
       <DependentUpon>Service.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Services\ProductService.cs" />
     <Compile Include="Models\Services\ProductServiceGen.cs">
       <DependentUpon>Service.tt</DependentUpon>
     </Compile>

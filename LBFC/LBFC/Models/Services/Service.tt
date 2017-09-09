@@ -152,7 +152,7 @@ public class CodeStringGenerator
     {
         return string.Format(
             CultureInfo.InvariantCulture,
-            "{0} {1}partial interface I{2}Service",
+            "{0} {1}partial interface I{2}Service : IBaseService<{2}>",
             "public",
             _code.SpaceAfter(_code.AbstractOption(entity)),
             _code.Escape(entity));

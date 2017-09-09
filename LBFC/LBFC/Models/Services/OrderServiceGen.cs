@@ -14,7 +14,7 @@ namespace LBFC.Models.Services
     using LBFC.Models.Entities;
     
     
-    public partial interface IOrderService
+    public partial interface IOrderService : IBaseService<Order>
     {
     }
     

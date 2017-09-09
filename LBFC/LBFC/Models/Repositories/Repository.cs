@@ -30,6 +30,11 @@ namespace LBFC.Models.Repositories
             }
         }
 
+        public List<E> Get(Func<E, bool> predicate)
+        {
+            return entities.Set<E>().Where(predicate).ToList();
+        }
+
         public E Get<TKey>(TKey id)
         {
             return entities.Set<E>().Find(id);

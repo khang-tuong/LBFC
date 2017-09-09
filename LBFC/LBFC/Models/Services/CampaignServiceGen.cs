@@ -14,7 +14,7 @@ namespace LBFC.Models.Services
     using LBFC.Models.Entities;
     
     
-    public partial interface ICampaignService
+    public partial interface ICampaignService : IBaseService<Campaign>
     {
     }
     

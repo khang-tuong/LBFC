@@ -14,7 +14,7 @@ namespace LBFC.Models.Services
     using LBFC.Models.Entities;
     
     
-    public partial interface IImageLinkService
+    public partial interface IImageLinkService : IBaseService<ImageLink>
     {
     }
     

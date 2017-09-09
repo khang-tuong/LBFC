@@ -14,7 +14,7 @@ namespace LBFC.Models.Services
     using LBFC.Models.Entities;
     
     
-    public partial interface IAspNetUserLoginService
+    public partial interface IAspNetUserLoginService : IBaseService<AspNetUserLogin>
     {
     }
     
