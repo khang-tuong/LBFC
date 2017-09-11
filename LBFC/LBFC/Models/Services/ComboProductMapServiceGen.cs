@@ -20,7 +20,7 @@ namespace LBFC.Models.Services
     
     public partial class ComboProductMapService :  BaseService<ComboProductMap>, IComboProductMapService
     {
-        public ComboProductMapService(ComboProductMap e) : base(e)
+        public ComboProductMapService() : base()
         {
         }
     }

@@ -23,7 +23,7 @@ namespace LBFC.Models.Services
     {
         protected IRepository<T> repo;
 
-        public BaseService(T e)
+        public BaseService()
         {
             this.repo = new Repository<T>();
         }

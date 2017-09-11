@@ -15,7 +15,10 @@ namespace LBFC.Models.Services
     {
         public List<Product> GetByShopId(int shopId)
         {
-            return this.repo.Get(q => q.ShopId == shopId).ToList();
+            //return this.repo.Get(q => q.ShopId == shopId).ToList();
+            return new List<Product>() {
+                new Product() {Id = 1, Name = "Test Product" }
+            };
         }
     }
 }

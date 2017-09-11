@@ -20,7 +20,7 @@ namespace LBFC.Models.Services
     
     public partial class ComboService :  BaseService<Combo>, IComboService
     {
-        public ComboService(Combo e) : base(e)
+        public ComboService() : base()
         {
         }
     }

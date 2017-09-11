@@ -20,7 +20,7 @@ namespace LBFC.Models.Services
     
     public partial class ProductCategoryService :  BaseService<ProductCategory>, IProductCategoryService
     {
-        public ProductCategoryService(ProductCategory e) : base(e)
+        public ProductCategoryService() : base()
         {
         }
     }

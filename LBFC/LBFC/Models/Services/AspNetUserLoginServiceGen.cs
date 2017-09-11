@@ -20,7 +20,7 @@ namespace LBFC.Models.Services
     
     public partial class AspNetUserLoginService :  BaseService<AspNetUserLogin>, IAspNetUserLoginService
     {
-        public AspNetUserLoginService(AspNetUserLogin e) : base(e)
+        public AspNetUserLoginService() : base()
         {
         }
     }

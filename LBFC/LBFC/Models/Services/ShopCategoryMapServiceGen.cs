@@ -20,7 +20,7 @@ namespace LBFC.Models.Services
     
     public partial class ShopCategoryMapService :  BaseService<ShopCategoryMap>, IShopCategoryMapService
     {
-        public ShopCategoryMapService(ShopCategoryMap e) : base(e)
+        public ShopCategoryMapService() : base()
         {
         }
     }

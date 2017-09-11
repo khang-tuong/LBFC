@@ -173,6 +173,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ShopCategoryController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -316,6 +318,7 @@
     <Compile Include="Models\Services\ShopCategoryMapServiceGen.cs">
       <DependentUpon>Service.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Services\ShopCategoryService.cs" />
     <Compile Include="Models\Services\ShopCategoryServiceGen.cs">
       <DependentUpon>Service.tt</DependentUpon>
     </Compile>
@@ -407,6 +410,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Product\" />
+    <Folder Include="Views\ShopCategory\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

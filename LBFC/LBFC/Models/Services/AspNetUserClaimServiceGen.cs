@@ -20,7 +20,7 @@ namespace LBFC.Models.Services
     
     public partial class AspNetUserClaimService :  BaseService<AspNetUserClaim>, IAspNetUserClaimService
     {
-        public AspNetUserClaimService(AspNetUserClaim e) : base(e)
+        public AspNetUserClaimService() : base()
         {
         }
     }

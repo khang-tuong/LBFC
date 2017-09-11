@@ -20,7 +20,7 @@ namespace LBFC.Models.Services
     
     public partial class CampaignService :  BaseService<Campaign>, ICampaignService
     {
-        public CampaignService(Campaign e) : base(e)
+        public CampaignService() : base()
         {
         }
     }

@@ -20,7 +20,7 @@ namespace LBFC.Models.Services
     
     public partial class PromotionService :  BaseService<Promotion>, IPromotionService
     {
-        public PromotionService(Promotion e) : base(e)
+        public PromotionService() : base()
         {
         }
     }

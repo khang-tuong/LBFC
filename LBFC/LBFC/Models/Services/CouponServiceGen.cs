@@ -20,7 +20,7 @@ namespace LBFC.Models.Services
     
     public partial class CouponService :  BaseService<Coupon>, ICouponService
     {
-        public CouponService(Coupon e) : base(e)
+        public CouponService() : base()
         {
         }
     }

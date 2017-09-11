@@ -20,7 +20,7 @@ namespace LBFC.Models.Services
     
     public partial class OrderService :  BaseService<Order>, IOrderService
     {
-        public OrderService(Order e) : base(e)
+        public OrderService() : base()
         {
         }
     }

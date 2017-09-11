@@ -20,7 +20,7 @@ namespace LBFC.Models.Services
     
     public partial class AspNetRoleService :  BaseService<AspNetRole>, IAspNetRoleService
     {
-        public AspNetRoleService(AspNetRole e) : base(e)
+        public AspNetRoleService() : base()
         {
         }
     }

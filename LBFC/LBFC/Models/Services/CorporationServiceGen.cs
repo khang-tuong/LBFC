@@ -20,7 +20,7 @@ namespace LBFC.Models.Services
     
     public partial class CorporationService :  BaseService<Corporation>, ICorporationService
     {
-        public CorporationService(Corporation e) : base(e)
+        public CorporationService() : base()
         {
         }
     }

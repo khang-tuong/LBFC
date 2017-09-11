@@ -20,7 +20,7 @@ namespace LBFC.Models.Services
     
     public partial class ImageLinkService :  BaseService<ImageLink>, IImageLinkService
     {
-        public ImageLinkService(ImageLink e) : base(e)
+        public ImageLinkService() : base()
         {
         }
     }
