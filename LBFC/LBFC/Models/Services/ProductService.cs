@@ -9,16 +9,14 @@ namespace LBFC.Models.Services
     public partial interface IProductService
     {
         List<Product> GetByShopId(int shopId);
+        List<Product> GetActive(Func<Product, bool> predicate);
     }
 
     public partial class ProductService
     {
         public List<Product> GetByShopId(int shopId)
         {
-            //return this.repo.Get(q => q.ShopId == shopId).ToList();
-            return new List<Product>() {
-                new Product() {Id = 1, Name = "Test Product" }
-            };
+            return this.repo.Get(q => q.ShopId == shopId).ToList();
         }
     }
 }
