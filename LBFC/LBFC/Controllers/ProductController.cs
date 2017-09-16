@@ -20,5 +20,11 @@ namespace LBFC.Controllers
             IProductService service = new ProductService();
             return service.GetByShopId(1)[0].Name;
         }
+
+        public JsonResult GetRecommend()
+        {
+            IProductService service = new ProductService();
+            return Json(service.GetRecommend(4), JsonRequestBehavior.AllowGet);
+        }
     }
 }

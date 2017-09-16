@@ -18,6 +18,7 @@ namespace LBFC.Models.Entities
         public Promotion()
         {
             this.Orders = new HashSet<Order>();
+            this.OrderDetails = new HashSet<OrderDetail>();
         }
     
         public int Id { get; set; }
@@ -32,12 +33,16 @@ namespace LBFC.Models.Entities
         public Nullable<int> BuyProduct { get; set; }
         public Nullable<int> GiftProduct { get; set; }
         public Nullable<short> Type { get; set; }
+        public Nullable<int> Quantity { get; set; }
+        public string Code { get; set; }
     
         public virtual Campaign Campaign { get; set; }
         public virtual Combo Combo { get; set; }
         public virtual Combo Combo1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
         public virtual Product Product { get; set; }
         public virtual Product Product1 { get; set; }
     }

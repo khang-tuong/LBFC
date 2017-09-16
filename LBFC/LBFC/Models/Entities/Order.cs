@@ -27,9 +27,7 @@ namespace LBFC.Models.Entities
         public Nullable<System.DateTime> DateOrdered { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public Nullable<int> PromotionId { get; set; }
-        public Nullable<int> CouponId { get; set; }
     
-        public virtual Coupon Coupon { get; set; }
         public virtual Promotion Promotion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
