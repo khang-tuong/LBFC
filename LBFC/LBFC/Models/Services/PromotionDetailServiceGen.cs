@@ -7,18 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LBFC.Models.Entities
+namespace LBFC.Models.Services
 {
     using System;
     using System.Collections.Generic;
+    using LBFC.Models.Entities;
     
-    public partial class ShopCategoryMap
+    
+    public partial interface IPromotionDetailService : IBaseService<PromotionDetail>
     {
-        public int ShopId { get; set; }
-        public int ShopCategoryId { get; set; }
-        public Nullable<bool> IsActive { get; set; }
+    }
     
-        public virtual Shop Shop { get; set; }
-        public virtual ShopCategory ShopCategory { get; set; }
+    public partial class PromotionDetailService :  BaseService<PromotionDetail>, IPromotionDetailService
+    {
+        public PromotionDetailService() : base()
+        {
+        }
     }
 }

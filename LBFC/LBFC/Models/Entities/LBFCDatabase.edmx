@@ -105,6 +105,16 @@
           <Property Name="StartDate" Type="datetime" />
           <Property Name="EndDate" Type="datetime" />
           <Property Name="IsActive" Type="bit" />
+          <Property Name="Code" Type="varchar" MaxLength="50" />
+          <Property Name="Quantity" Type="int" />
+        </EntityType>
+        <EntityType Name="CouponDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Code" Type="int" />
         </EntityType>
         <EntityType Name="ImageLink">
           <Key>
@@ -127,7 +137,6 @@
           <Property Name="DateOrdered" Type="datetime" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="PromotionId" Type="int" />
-          <Property Name="CouponId" Type="int" />
         </EntityType>
         <EntityType Name="OrderDetail">
           <Key>
@@ -139,6 +148,7 @@
           <Property Name="Quantity" Type="int" />
           <Property Name="CurrentPrice" Type="money" />
           <Property Name="IsActive" Type="bit" />
+          <Property Name="PromotionId" Type="int" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -148,13 +158,11 @@
           <Property Name="Name" Type="nvarchar" MaxLength="255" />
           <Property Name="Price" Type="money" />
           <Property Name="Description" Type="nvarchar" MaxLength="1000" />
-          <Property Name="CategoryId" Type="int" />
           <Property Name="ShopId" Type="int" />
           <Property Name="AddedDate" Type="datetime" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="Rating" Type="float" />
           <Property Name="RateCount" Type="int" />
-          <Property Name="ParentId" Type="int" />
         </EntityType>
         <EntityType Name="ProductCategory">
           <Key>
@@ -189,12 +197,20 @@
           <Property Name="BuyProduct" Type="int" />
           <Property Name="GiftProduct" Type="int" />
           <Property Name="Type" Type="smallint" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Code" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PromotionDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="Shop">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Address" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="CorporationId" Type="int" />
@@ -215,11 +231,11 @@
         </EntityType>
         <EntityType Name="ShopCategoryMap">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ShopId" />
+            <PropertyRef Name="ShopCategoryId" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ShopId" Type="int" />
-          <Property Name="ShopCategoryId" Type="int" />
+          <Property Name="ShopId" Type="int" Nullable="false" />
+          <Property Name="ShopCategoryId" Type="int" Nullable="false" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
         <Association Name="FK_Campaign_Shop">
@@ -255,18 +271,6 @@
             </Principal>
             <Dependent Role="ComboProductMap">
               <PropertyRef Name="ProductId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Coupon_Campaign">
-          <End Role="Campaign" Type="Self.Campaign" Multiplicity="0..1" />
-          <End Role="Coupon" Type="Self.Coupon" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Campaign">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Coupon">
-              <PropertyRef Name="CampaignId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -350,18 +354,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Order_Coupon">
-          <End Role="Coupon" Type="Self.Coupon" Multiplicity="0..1" />
-          <End Role="Order" Type="Self.Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Coupon">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Order">
-              <PropertyRef Name="CouponId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Order_Promotion">
           <End Role="Promotion" Type="Self.Promotion" Multiplicity="0..1" />
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
@@ -383,6 +375,18 @@
             </Principal>
             <Dependent Role="OrderDetail">
               <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetail_Promotion">
+          <End Role="Promotion" Type="Self.Promotion" Multiplicity="0..1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Promotion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="PromotionId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -495,7 +499,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ShopCategoryMap_Shop">
-          <End Role="Shop" Type="Self.Shop" Multiplicity="0..1" />
+          <End Role="Shop" Type="Self.Shop" Multiplicity="1" />
           <End Role="ShopCategoryMap" Type="Self.ShopCategoryMap" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Shop">
@@ -507,7 +511,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ShopCategoryMap_ShopCategory">
-          <End Role="ShopCategory" Type="Self.ShopCategory" Multiplicity="0..1" />
+          <End Role="ShopCategory" Type="Self.ShopCategory" Multiplicity="1" />
           <End Role="ShopCategoryMap" Type="Self.ShopCategoryMap" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ShopCategory">
@@ -529,6 +533,7 @@
           <EntitySet Name="ComboProductMap" EntityType="Self.ComboProductMap" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Corporation" EntityType="Self.Corporation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Coupon" EntityType="Self.Coupon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CouponDetail" EntityType="Self.CouponDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ImageLink" EntityType="Self.ImageLink" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="dbo" store:Type="Tables" />
@@ -536,6 +541,7 @@
           <EntitySet Name="ProductCategory" EntityType="Self.ProductCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductCategoryMap" EntityType="Self.ProductCategoryMap" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Promotion" EntityType="Self.Promotion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PromotionDetail" EntityType="Self.PromotionDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shop" EntityType="Self.Shop" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ShopCategory" EntityType="Self.ShopCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ShopCategoryMap" EntityType="Self.ShopCategoryMap" Schema="dbo" store:Type="Tables" />
@@ -550,10 +556,6 @@
           <AssociationSet Name="FK_ComboProductMap_Product" Association="Self.FK_ComboProductMap_Product">
             <End Role="Product" EntitySet="Product" />
             <End Role="ComboProductMap" EntitySet="ComboProductMap" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Coupon_Campaign" Association="Self.FK_Coupon_Campaign">
-            <End Role="Campaign" EntitySet="Campaign" />
-            <End Role="Coupon" EntitySet="Coupon" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -579,16 +581,16 @@
             <End Role="Shop" EntitySet="Shop" />
             <End Role="ImageLink" EntitySet="ImageLink" />
           </AssociationSet>
-          <AssociationSet Name="FK_Order_Coupon" Association="Self.FK_Order_Coupon">
-            <End Role="Coupon" EntitySet="Coupon" />
-            <End Role="Order" EntitySet="Order" />
-          </AssociationSet>
           <AssociationSet Name="FK_Order_Promotion" Association="Self.FK_Order_Promotion">
             <End Role="Promotion" EntitySet="Promotion" />
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderDetail_Order" Association="Self.FK_OrderDetail_Order">
             <End Role="Order" EntitySet="Order" />
+            <End Role="OrderDetail" EntitySet="OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetail_Promotion" Association="Self.FK_OrderDetail_Promotion">
+            <End Role="Promotion" EntitySet="Promotion" />
             <End Role="OrderDetail" EntitySet="OrderDetail" />
           </AssociationSet>
           <AssociationSet Name="FK_Product_Shop" Association="Self.FK_Product_Shop">
@@ -650,6 +652,7 @@
           <EntitySet Name="ComboProductMaps" EntityType="LBFCModel.ComboProductMap" />
           <EntitySet Name="Corporations" EntityType="LBFCModel.Corporation" />
           <EntitySet Name="Coupons" EntityType="LBFCModel.Coupon" />
+          <EntitySet Name="CouponDetails" EntityType="LBFCModel.CouponDetail" />
           <EntitySet Name="ImageLinks" EntityType="LBFCModel.ImageLink" />
           <EntitySet Name="Orders" EntityType="LBFCModel.Order" />
           <EntitySet Name="OrderDetails" EntityType="LBFCModel.OrderDetail" />
@@ -657,6 +660,7 @@
           <EntitySet Name="ProductCategories" EntityType="LBFCModel.ProductCategory" />
           <EntitySet Name="ProductCategoryMaps" EntityType="LBFCModel.ProductCategoryMap" />
           <EntitySet Name="Promotions" EntityType="LBFCModel.Promotion" />
+          <EntitySet Name="PromotionDetails" EntityType="LBFCModel.PromotionDetail" />
           <EntitySet Name="Shops" EntityType="LBFCModel.Shop" />
           <EntitySet Name="ShopCategories" EntityType="LBFCModel.ShopCategory" />
           <EntitySet Name="ShopCategoryMaps" EntityType="LBFCModel.ShopCategoryMap" />
@@ -671,10 +675,6 @@
           <AssociationSet Name="FK_Campaign_Shop" Association="LBFCModel.FK_Campaign_Shop">
             <End Role="Shop" EntitySet="Shops" />
             <End Role="Campaign" EntitySet="Campaigns" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Coupon_Campaign" Association="LBFCModel.FK_Coupon_Campaign">
-            <End Role="Campaign" EntitySet="Campaigns" />
-            <End Role="Coupon" EntitySet="Coupons" />
           </AssociationSet>
           <AssociationSet Name="FK_Promotion_Campaign" Association="LBFCModel.FK_Promotion_Campaign">
             <End Role="Campaign" EntitySet="Campaigns" />
@@ -700,10 +700,6 @@
             <End Role="Corporation" EntitySet="Corporations" />
             <End Role="Shop" EntitySet="Shops" />
           </AssociationSet>
-          <AssociationSet Name="FK_Order_Coupon" Association="LBFCModel.FK_Order_Coupon">
-            <End Role="Coupon" EntitySet="Coupons" />
-            <End Role="Order" EntitySet="Orders" />
-          </AssociationSet>
           <AssociationSet Name="FK_ImageLink_Product" Association="LBFCModel.FK_ImageLink_Product">
             <End Role="Product" EntitySet="Products" />
             <End Role="ImageLink" EntitySet="ImageLinks" />
@@ -718,6 +714,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_OrderDetail_Order" Association="LBFCModel.FK_OrderDetail_Order">
             <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetail_Promotion" Association="LBFCModel.FK_OrderDetail_Promotion">
+            <End Role="Promotion" EntitySet="Promotions" />
             <End Role="OrderDetail" EntitySet="OrderDetails" />
           </AssociationSet>
           <AssociationSet Name="FK_Product_Shop" Association="LBFCModel.FK_Product_Shop">
@@ -812,7 +812,6 @@
           <Property Name="StartDate" Type="DateTime" Precision="3" />
           <Property Name="EndDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Shop" Relationship="LBFCModel.FK_Campaign_Shop" FromRole="Campaign" ToRole="Shop" />
-          <NavigationProperty Name="Coupons" Relationship="LBFCModel.FK_Coupon_Campaign" FromRole="Campaign" ToRole="Coupon" />
           <NavigationProperty Name="Promotions" Relationship="LBFCModel.FK_Promotion_Campaign" FromRole="Campaign" ToRole="Promotion" />
         </EntityType>
         <EntityType Name="Combo">
@@ -860,8 +859,16 @@
           <Property Name="StartDate" Type="DateTime" Precision="3" />
           <Property Name="EndDate" Type="DateTime" Precision="3" />
           <Property Name="IsActive" Type="Boolean" />
-          <NavigationProperty Name="Campaign" Relationship="LBFCModel.FK_Coupon_Campaign" FromRole="Coupon" ToRole="Campaign" />
-          <NavigationProperty Name="Orders" Relationship="LBFCModel.FK_Order_Coupon" FromRole="Coupon" ToRole="Order" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Quantity" Type="Int32" />
+        </EntityType>
+        <EntityType Name="CouponDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Code" Type="Int32" />
         </EntityType>
         <EntityType Name="ImageLink">
           <Key>
@@ -886,8 +893,6 @@
           <Property Name="DateOrdered" Type="DateTime" Precision="3" />
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="PromotionId" Type="Int32" />
-          <Property Name="CouponId" Type="Int32" />
-          <NavigationProperty Name="Coupon" Relationship="LBFCModel.FK_Order_Coupon" FromRole="Order" ToRole="Coupon" />
           <NavigationProperty Name="Promotion" Relationship="LBFCModel.FK_Order_Promotion" FromRole="Order" ToRole="Promotion" />
           <NavigationProperty Name="OrderDetails" Relationship="LBFCModel.FK_OrderDetail_Order" FromRole="Order" ToRole="OrderDetail" />
         </EntityType>
@@ -901,7 +906,9 @@
           <Property Name="Quantity" Type="Int32" />
           <Property Name="CurrentPrice" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="IsActive" Type="Boolean" />
+          <Property Name="PromotionId" Type="Int32" />
           <NavigationProperty Name="Order" Relationship="LBFCModel.FK_OrderDetail_Order" FromRole="OrderDetail" ToRole="Order" />
+          <NavigationProperty Name="Promotion" Relationship="LBFCModel.FK_OrderDetail_Promotion" FromRole="OrderDetail" ToRole="Promotion" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -911,13 +918,11 @@
           <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="CategoryId" Type="Int32" />
           <Property Name="ShopId" Type="Int32" />
           <Property Name="AddedDate" Type="DateTime" Precision="3" />
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="Rating" Type="Double" />
           <Property Name="RateCount" Type="Int32" />
-          <Property Name="ParentId" Type="Int32" />
           <NavigationProperty Name="ComboProductMaps" Relationship="LBFCModel.FK_ComboProductMap_Product" FromRole="Product" ToRole="ComboProductMap" />
           <NavigationProperty Name="ImageLinks" Relationship="LBFCModel.FK_ImageLink_Product" FromRole="Product" ToRole="ImageLink" />
           <NavigationProperty Name="Shop" Relationship="LBFCModel.FK_Product_Shop" FromRole="Product" ToRole="Shop" />
@@ -961,18 +966,27 @@
           <Property Name="BuyProduct" Type="Int32" />
           <Property Name="GiftProduct" Type="Int32" />
           <Property Name="Type" Type="Int16" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Campaign" Relationship="LBFCModel.FK_Promotion_Campaign" FromRole="Promotion" ToRole="Campaign" />
           <NavigationProperty Name="Combo" Relationship="LBFCModel.FK_Promotion_Combo" FromRole="Promotion" ToRole="Combo" />
           <NavigationProperty Name="Combo1" Relationship="LBFCModel.FK_Promotion_Combo1" FromRole="Promotion" ToRole="Combo" />
           <NavigationProperty Name="Orders" Relationship="LBFCModel.FK_Order_Promotion" FromRole="Promotion" ToRole="Order" />
+          <NavigationProperty Name="OrderDetails" Relationship="LBFCModel.FK_OrderDetail_Promotion" FromRole="Promotion" ToRole="OrderDetail" />
           <NavigationProperty Name="Product" Relationship="LBFCModel.FK_Promotion_Product" FromRole="Promotion" ToRole="Product" />
           <NavigationProperty Name="Product1" Relationship="LBFCModel.FK_Promotion_Product1" FromRole="Promotion" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="PromotionDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="Shop">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Address" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="CorporationId" Type="Int32" />
@@ -999,11 +1013,11 @@
         </EntityType>
         <EntityType Name="ShopCategoryMap">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ShopId" />
+            <PropertyRef Name="ShopCategoryId" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ShopId" Type="Int32" />
-          <Property Name="ShopCategoryId" Type="Int32" />
+          <Property Name="ShopId" Type="Int32" Nullable="false" />
+          <Property Name="ShopCategoryId" Type="Int32" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" />
           <NavigationProperty Name="Shop" Relationship="LBFCModel.FK_ShopCategoryMap_Shop" FromRole="ShopCategoryMap" ToRole="Shop" />
           <NavigationProperty Name="ShopCategory" Relationship="LBFCModel.FK_ShopCategoryMap_ShopCategory" FromRole="ShopCategoryMap" ToRole="ShopCategory" />
@@ -1045,18 +1059,6 @@
             </Principal>
             <Dependent Role="Campaign">
               <PropertyRef Name="ShopId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Coupon_Campaign">
-          <End Type="LBFCModel.Campaign" Role="Campaign" Multiplicity="0..1" />
-          <End Type="LBFCModel.Coupon" Role="Coupon" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Campaign">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Coupon">
-              <PropertyRef Name="CampaignId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1132,18 +1134,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Order_Coupon">
-          <End Type="LBFCModel.Coupon" Role="Coupon" Multiplicity="0..1" />
-          <End Type="LBFCModel.Order" Role="Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Coupon">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Order">
-              <PropertyRef Name="CouponId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ImageLink_Product">
           <End Type="LBFCModel.Product" Role="Product" Multiplicity="0..1" />
           <End Type="LBFCModel.ImageLink" Role="ImageLink" Multiplicity="*" />
@@ -1189,6 +1179,18 @@
             </Principal>
             <Dependent Role="OrderDetail">
               <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetail_Promotion">
+          <End Type="LBFCModel.Promotion" Role="Promotion" Multiplicity="0..1" />
+          <End Type="LBFCModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Promotion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="PromotionId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1253,7 +1255,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ShopCategoryMap_Shop">
-          <End Type="LBFCModel.Shop" Role="Shop" Multiplicity="0..1" />
+          <End Type="LBFCModel.Shop" Role="Shop" Multiplicity="1" />
           <End Type="LBFCModel.ShopCategoryMap" Role="ShopCategoryMap" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Shop">
@@ -1265,7 +1267,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ShopCategoryMap_ShopCategory">
-          <End Type="LBFCModel.ShopCategory" Role="ShopCategory" Multiplicity="0..1" />
+          <End Type="LBFCModel.ShopCategory" Role="ShopCategory" Multiplicity="1" />
           <End Type="LBFCModel.ShopCategoryMap" Role="ShopCategoryMap" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ShopCategory">
@@ -1373,6 +1375,8 @@
           <EntitySetMapping Name="Coupons">
             <EntityTypeMapping TypeName="LBFCModel.Coupon">
               <MappingFragment StoreEntitySet="Coupon">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="EndDate" ColumnName="EndDate" />
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
@@ -1381,6 +1385,15 @@
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CouponDetails">
+            <EntityTypeMapping TypeName="LBFCModel.CouponDetail">
+              <MappingFragment StoreEntitySet="CouponDetail">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1399,7 +1412,6 @@
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="LBFCModel.Order">
               <MappingFragment StoreEntitySet="Order">
-                <ScalarProperty Name="CouponId" ColumnName="CouponId" />
                 <ScalarProperty Name="PromotionId" ColumnName="PromotionId" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="DateOrdered" ColumnName="DateOrdered" />
@@ -1413,6 +1425,7 @@
           <EntitySetMapping Name="OrderDetails">
             <EntityTypeMapping TypeName="LBFCModel.OrderDetail">
               <MappingFragment StoreEntitySet="OrderDetail">
+                <ScalarProperty Name="PromotionId" ColumnName="PromotionId" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="CurrentPrice" ColumnName="CurrentPrice" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
@@ -1425,13 +1438,11 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="LBFCModel.Product">
               <MappingFragment StoreEntitySet="Product">
-                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
                 <ScalarProperty Name="RateCount" ColumnName="RateCount" />
                 <ScalarProperty Name="Rating" ColumnName="Rating" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
                 <ScalarProperty Name="ShopId" ColumnName="ShopId" />
-                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1461,6 +1472,8 @@
           <EntitySetMapping Name="Promotions">
             <EntityTypeMapping TypeName="LBFCModel.Promotion">
               <MappingFragment StoreEntitySet="Promotion">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="GiftProduct" ColumnName="GiftProduct" />
                 <ScalarProperty Name="BuyProduct" ColumnName="BuyProduct" />
@@ -1472,6 +1485,13 @@
                 <ScalarProperty Name="CampaignId" ColumnName="CampaignId" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PromotionDetails">
+            <EntityTypeMapping TypeName="LBFCModel.PromotionDetail">
+              <MappingFragment StoreEntitySet="PromotionDetail">
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1507,7 +1527,6 @@
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="ShopCategoryId" ColumnName="ShopCategoryId" />
                 <ScalarProperty Name="ShopId" ColumnName="ShopId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

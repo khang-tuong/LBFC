@@ -17,7 +17,6 @@ namespace LBFC.Models.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Campaign()
         {
-            this.Coupons = new HashSet<Coupon>();
             this.Promotions = new HashSet<Promotion>();
         }
     
@@ -28,8 +27,6 @@ namespace LBFC.Models.Entities
         public Nullable<System.DateTime> EndDate { get; set; }
     
         public virtual Shop Shop { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Coupon> Coupons { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Promotion> Promotions { get; set; }
     }

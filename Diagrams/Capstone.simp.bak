@@ -55,6 +55,10 @@
         <type>SoftwareIdeasModeler.Core.Diagrams.UmlDiagrams.UmlUseCaseDiagram</type>
         <value>1</value>
       </counter>
+      <counter>
+        <type>SoftwareIdeasModeler.Core.Diagrams.Other.EntityRelationshipDiagram</type>
+        <value>1</value>
+      </counter>
     </diagrams>
     <fields>
       <counter>
@@ -260,6 +264,25 @@
             <relation from="di826295993721065406" from-iid="203a2c97203a4ac3989cf72d16208176" to="di116339465229491156" to-iid="6ff56ee1bb634b109f8c569161edf7b9" />
           </item>
         </layer>
+      </diagram>
+      <diagram type="entity-relationship" id="pc2068465f98e43b1b1f570754091cd19_100307480" name="EntityRelationshipDiagram1" order-index="3" overview-order-index="1" show-id="false" show-name="true" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-special-indicators="false" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-nullability="true" show-sequence-number="false" show-extension-points="false" show-relationship-texts="true" show-description="false" show-field-description="false" auto-routed-paths="false">
+        <style>
+          <background-color index="1" color="#FFFFFFFF" />
+          <background-color index="2" color="#FFFFFFFF" />
+          <background-type type="solid" />
+        </style>
+        <meta>
+          <authors>
+            <author> </author>
+          </authors>
+          <description />
+          <creation-date>09/11/2017 10:25:27</creation-date>
+          <change-date>09/11/2017 10:25:27</change-date>
+          <revision-count>0</revision-count>
+          <version />
+        </meta>
+        <abstract-items />
+        <layer name="Default" visible="true" enabled="true" locked="false" />
       </diagram>
     </model>
   </models>

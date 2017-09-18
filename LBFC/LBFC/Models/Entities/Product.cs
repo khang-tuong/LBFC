@@ -28,13 +28,11 @@ namespace LBFC.Models.Entities
         public string Name { get; set; }
         public Nullable<decimal> Price { get; set; }
         public string Description { get; set; }
-        public Nullable<int> CategoryId { get; set; }
         public Nullable<int> ShopId { get; set; }
         public Nullable<System.DateTime> AddedDate { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public Nullable<double> Rating { get; set; }
         public Nullable<int> RateCount { get; set; }
-        public Nullable<int> ParentId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ComboProductMap> ComboProductMaps { get; set; }

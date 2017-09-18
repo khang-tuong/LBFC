@@ -34,6 +34,7 @@ namespace LBFC.Models.Entities
         public virtual DbSet<ComboProductMap> ComboProductMaps { get; set; }
         public virtual DbSet<Corporation> Corporations { get; set; }
         public virtual DbSet<Coupon> Coupons { get; set; }
+        public virtual DbSet<CouponDetail> CouponDetails { get; set; }
         public virtual DbSet<ImageLink> ImageLinks { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
@@ -41,6 +42,7 @@ namespace LBFC.Models.Entities
         public virtual DbSet<ProductCategory> ProductCategories { get; set; }
         public virtual DbSet<ProductCategoryMap> ProductCategoryMaps { get; set; }
         public virtual DbSet<Promotion> Promotions { get; set; }
+        public virtual DbSet<PromotionDetail> PromotionDetails { get; set; }
         public virtual DbSet<Shop> Shops { get; set; }
         public virtual DbSet<ShopCategory> ShopCategories { get; set; }
         public virtual DbSet<ShopCategoryMap> ShopCategoryMaps { get; set; }

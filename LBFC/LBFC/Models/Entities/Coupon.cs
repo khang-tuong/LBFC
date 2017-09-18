@@ -14,12 +14,6 @@ namespace LBFC.Models.Entities
     
     public partial class Coupon
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Coupon()
-        {
-            this.Orders = new HashSet<Order>();
-        }
-    
         public int Id { get; set; }
         public string Name { get; set; }
         public Nullable<short> Type { get; set; }
@@ -29,9 +23,7 @@ namespace LBFC.Models.Entities
         public Nullable<System.DateTime> StartDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }
         public Nullable<bool> IsActive { get; set; }
-    
-        public virtual Campaign Campaign { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Orders { get; set; }
+        public string Code { get; set; }
+        public Nullable<int> Quantity { get; set; }
     }
 }
