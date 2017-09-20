@@ -9,8 +9,10 @@
   "author": "baothd",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.1",
     "botbuilder": "^3.9.1",
     "express": "^4.15.4",
+    "http": "0.0.0",
     "morgan": "^1.8.2",
     "socket.io": "^2.0.3"
   }
