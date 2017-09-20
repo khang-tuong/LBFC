@@ -21,3 +21,5 @@ app.listen(port);
 app.post('/public/message', bot.listen());
 
 console.log("Server start on port: " + port);
+
+module.exports = app;

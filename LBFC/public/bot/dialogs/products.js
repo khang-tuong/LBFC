@@ -1,8 +1,22 @@
 var botbuilder = require('botbuilder');
 var lib = new botbuilder.Library('products');
+// var app = require('../../app.js')
+// var http = require('http');
+
+// var options = {
+//     host: 'localhost',
+//     port: 54374,
+//     path: '/Product/GetRecomend',
+//     method: 'POST',
+//     headers: {
+//         'Content-Type': 'application/x-www-form-urlencoded'
+//     }
+// };
+
+
 lib.dialog('getProduct', [
-    function(session, args, next) {
-        
+    function (session, args, next) {
+
         var intent = args.intent;
         
         var coffeeShopEntity = botbuilder.EntityRecognizer.findEntity(intent.entities, 'Coffee Shop');
@@ -10,15 +24,25 @@ lib.dialog('getProduct', [
         var clothesShop = botbuilder.EntityRecognizer.findEntity(intent.entities, 'Clothes Shop');
         var message = new botbuilder.Message(session);
         message.attachmentLayout(botbuilder.AttachmentLayout.carousel);
+        
+        // var httpRequest = http.request(options, function (response) {
+        //     response.setEncoding('utf8');
+        //     response.on('data', function (chunk) {
+        //         console.log("body: " + chunk);
+        //     });
+        //     response.on('end', function () {
+        //         res.send('ok');
+        //     })
+        // });
+
         if (coffeeShopEntity) {
             session.dialogData.searchType = 'Coffee Shop';
-            session.send('Đợi mình xíu nhé');
             message.attachments([
                 new botbuilder.HeroCard(session)
                     .title('Ba cô gái')
                     .subtitle("Bò bít tết sốt rượu vang")
                     .text("Size nhỏ: 45k, size lớn: 60k")
-                    .images([botbuilder.CardImage.create(session, 'http://vinbeefood.com/timthumb.php?src=upload/images/bo-bit-tet-va-bo-ne.png')])
+                    .images([botbuilder.CardImage.create(session, 'https://momkitty.com/wp-content/uploads/2016/10/cach-lam-bo-luc-lac-10.jpg')])
                     .buttons([
                         botbuilder.CardAction.imBack(session, "Order", "Order")
                     ]),
@@ -44,9 +68,11 @@ lib.dialog('getProduct', [
     }
 ]).triggerAction({
     matches: ['GetCoffeeShopProduct', 'GetRestaurantProduct', 'GetClothesShopProduct'],
-    confirmPrompt: 'Minh cho bạn xem menu của %s nhé?' 
+    onInterrupted: {
+        confirmPrompt: 'Minh cho bạn xem menu của %s nhé?'
+    }
 });
 
-module.exports.createLibrary = function() {
+module.exports.createLibrary = function () {
     return lib.clone();
 };
