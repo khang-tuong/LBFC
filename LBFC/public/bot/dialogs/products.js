@@ -1,5 +1,6 @@
 var botbuilder = require('botbuilder');
 var lib = new botbuilder.Library('products');
+var heroCard = require('../bot-config');
 // var app = require('../../app.js')
 // var http = require('http');
 
@@ -12,7 +13,6 @@ var lib = new botbuilder.Library('products');
 //         'Content-Type': 'application/x-www-form-urlencoded'
 //     }
 // };
-
 
 lib.dialog('getProduct', [
     function (session, args, next) {
@@ -65,6 +65,7 @@ lib.dialog('getProduct', [
             message = "Xin lỗi, cửa hàng này không nằm trong chuỗi hệ thống của chúng tôi!";
         }
         session.send(message);
+        
     }
 ]).triggerAction({
     matches: ['GetCoffeeShopProduct', 'GetRestaurantProduct', 'GetClothesShopProduct'],
