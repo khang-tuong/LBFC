@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var bot = require('./bot/bot-config.js');
 var app = express();
+var converter = require('./bot/vietnamese/vietnamese-converter');
 
 //morgan
 app.use(morgan('dev'));  
@@ -22,4 +23,8 @@ app.post('/public/message', bot.listen());
 
 console.log("Server start on port: " + port);
 
-module.exports = app;
+
+
+module.exports = {
+    app: express(),
+}

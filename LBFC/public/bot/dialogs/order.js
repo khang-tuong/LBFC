@@ -1,6 +1,7 @@
 var botbuilder = require('botbuilder');
 var lib = new botbuilder.Library('order');
 var config = require('../bot-config');
+var cardModel = require('../tools/card');
 
 lib.dialog('orderProduct', [
     function (session, args, next) {
@@ -156,7 +157,7 @@ lib.dialog('confirmProduct', [
             console.log('hehee');
             console.log(session.userData.productName);
             var message = new botbuilder.Message(session);
-            var optionCard = config.createTwoOptionCard(session, 'Xem thêm', 'Xem thêm', 'Thanh toán luôn', 'Thanh toán');
+            var optionCard = cardModel.createTwoOptionCard(session, 'Xem thêm', 'Xem thêm', 'Thanh toán luôn', 'Thanh toán');
             message.addAttachment(optionCard);
             session.userData.productDetail = session.message.value;
             next(message);
